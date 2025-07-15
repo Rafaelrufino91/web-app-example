@@ -7,16 +7,19 @@ class RegistroForm {
     urlFeedback: () => cy.get('#urlFeedback'),
     submitBtn: () => cy.get('#btnSubmit')
   }
+
   typeTitle(text) {
     if (text != '') {
     this.elements.titleInput().type(text)
     }
   }
+
   typeUrl(text) {
     if (text != '') {
       this.elements.urlInput().type(text)
     }
   }
+
   clickSubmit() {
     this.elements.submitBtn().click()
   }
@@ -35,7 +38,6 @@ const color = {
 }
 
 describe('Registro de Imagens', () => {
-  
   describe('Enviar uma imagem com entradas inválidas', () => {
     after(() => {
       cy.clearAllLocalStorage()
@@ -63,5 +65,25 @@ describe('Registro de Imagens', () => {
       registroform.elements.titleInput().should('have.css', 'borderRightColor', color.erro) 
       })
     })
-  
   }) 
+
+  describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
+    it('Dado que estou na página de registro de imagem', () => {
+      cy.visit('/')
+    })
+    it('Quando eu digito "Alien BR" no campo de título', () => {
+      registroform.typeTitle('Alien BR')
+    })
+    it('Então eu devo ver um ícone de verificação no campo de título', () => {
+      registroform.elements.titleInput().should('have.value', 'Alien BR')
+    })
+    it('Quando eu digito "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
+      registroform.typeUrl('https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
+    })
+    it('Então eu devo ver um ícone de verificação no campo de URL da imagem', () => {
+      registroform.elements.urlInput().should('have.value', 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
+    })
+    it('Então eu posso pressionar enter para enviar o formulário', () => {
+      registroform.clickSubmit()
+    })
+  })
