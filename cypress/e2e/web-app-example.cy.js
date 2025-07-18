@@ -42,7 +42,6 @@ describe('Registro de Imagens', () => {
     after(() => {
       cy.clearAllLocalStorage()
     })
-   
     it('Dado que estou na página de registro de imagens', () => {
       cy.visit('/')
     })
@@ -65,7 +64,6 @@ describe('Registro de Imagens', () => {
       registroform.elements.titleInput().should('have.css', 'borderRightColor', color.erro) 
       })
     })
-  }) 
 
   describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
     it('Dado que estou na página de registro de imagem', () => {
@@ -87,3 +85,30 @@ describe('Registro de Imagens', () => {
       registroform.clickSubmit()
     })
   })
+  describe('Enviar uma imagem e atualizar a lista', () => {
+    it('Dado que estou na página de registro de imagem', () => {
+      cy.visit('/')
+    })
+    it('Então eu digitei "BR Alien" no campo de título', () => {
+      
+    })
+    it('Então eu digitei "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
+      
+    })
+    it('Quando eu clico no botão de enviar', () => {
+      
+    })
+    it('E a lista de imagens registradas deve ser atualizada com o novo item', () => {
+      
+    })
+    it('E o novo item deve ser armazenado no localStorage', () => {
+      
+    })
+    it('Então os campos devem ser limpos', () => {
+      
+    })
+  })
+
+}) 
+
+  
