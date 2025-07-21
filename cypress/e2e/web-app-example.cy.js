@@ -13,7 +13,6 @@ class RegistroForm {
     this.elements.titleInput().type(text)
     }
   }
-
   typeUrl(text) {
     if (text != '') {
       this.elements.urlInput().type(text)
@@ -22,6 +21,10 @@ class RegistroForm {
 
   clickSubmit() {
     this.elements.submitBtn().click()
+  }
+
+  pressEnter() {
+    cy.focused().type('{enter}')
   }
 }
 
@@ -38,6 +41,7 @@ const color = {
 }
 
 describe('Registro de Imagens', () => {
+
   describe('Enviar uma imagem com entradas inválidas', () => {
     after(() => {
       cy.clearAllLocalStorage()
@@ -62,53 +66,53 @@ describe('Registro de Imagens', () => {
     })
     it('E devo ver um ícone de exclamação nos campos de título e URL', () => {
       registroform.elements.titleInput().should('have.css', 'borderRightColor', color.erro) 
-      })
-    })
-
-  describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
-    it('Dado que estou na página de registro de imagem', () => {
-      cy.visit('/')
-    })
-    it('Quando eu digito "Alien BR" no campo de título', () => {
-      registroform.typeTitle('Alien BR')
-    })
-    it('Então eu devo ver um ícone de verificação no campo de título', () => {
-      registroform.elements.titleInput().should('have.value', 'Alien BR')
-    })
-    it('Quando eu digito "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
-      registroform.typeUrl('https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
-    })
-    it('Então eu devo ver um ícone de verificação no campo de URL da imagem', () => {
-      registroform.elements.urlInput().should('have.value', 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
-    })
-    it('Então eu posso pressionar enter para enviar o formulário', () => {
-      registroform.clickSubmit()
     })
   })
-  describe('Enviar uma imagem e atualizar a lista', () => {
-    it('Dado que estou na página de registro de imagem', () => {
-      cy.visit('/')
-    })
-    it('Então eu digitei "BR Alien" no campo de título', () => {
-      
-    })
-    it('Então eu digitei "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
-      
-    })
-    it('Quando eu clico no botão de enviar', () => {
-      
-    })
-    it('E a lista de imagens registradas deve ser atualizada com o novo item', () => {
-      
-    })
-    it('E o novo item deve ser armazenado no localStorage', () => {
-      
-    })
-    it('Então os campos devem ser limpos', () => {
-      
-    })
+})
+describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
+  it('Dado que estou na página de registro de imagem', () => {
+    cy.visit('/')
   })
-
-}) 
+  it('Quando eu digito "Alien BR" no campo de título', () => {
+    registroform.typeTitle('Alien BR')
+  })
+  it('Então eu devo ver um ícone de verificação no campo de título', () => {
+    registroform.elements.titleInput().should('have.value', 'Alien BR')
+  })
+  it('Quando eu digito "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
+    registroform.typeUrl('https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
+  })
+  it('Então eu devo ver um ícone de verificação no campo de URL da imagem', () => {
+    registroform.elements.urlInput().should('have.value', 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
+  })
+  it('Então eu posso pressionar enter para enviar o formulário', () => {
+    registroform.pressEnter()
+    cy.wait(100)
+  })
+})
+describe('Enviar uma imagem e atualizar a lista', () => {
+  it('Dado que estou na página de registro de imagem', () => {
+    cy.visit('/')
+  })
+  it('Então eu digitei "BR Alien" no campo de título', () => {
+    registroform.typeTitle('BR Alien')
+  })
+  it('Então eu digitei "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
+    registroform.typeUrl('https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
+  })
+  it('Quando eu clico no botão de enviar', () => {
+    registroform.clickSubmit()
+  })
+  it('E a lista de imagens registradas deve ser atualizada com o novo item', () => {
+    cy.get('#card-list')
+    
+  })
+  it('E o novo item deve ser armazenado no localStorage', () => {
+    
+  })
+  it('Então os campos devem ser limpos', () => {
+    
+  })
+})
 
   
