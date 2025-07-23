@@ -1,32 +1,4 @@
-class RegistroForm {
-  elements = {
-    titleInput: () => cy.get('#title'),
-    titleFeedback: () => cy.get('#titleFeedback'),
-    urlInput: () => cy.get('#imageUrl'),
-    urlFeedback: () => cy.get('#urlFeedback'),
-    submitBtn: () => cy.get('#btnSubmit')
-  }
-
-  typeTitle(text) {
-    if (text != '') {
-    this.elements.titleInput().type(text)
-    }
-  }
-
-  typeUrl(text) {
-    if (text != '') {
-      this.elements.urlInput().type(text)
-    }
-  }
-
-  clickSubmit() {
-    this.elements.submitBtn().click()
-  }
-
-  pressEnter() {
-    cy.focused().type('{enter}')
-  }
-}
+import { RegistroForm } from "./registro-form"
 
 const registroform = new RegistroForm()
 
@@ -37,7 +9,7 @@ const input = {
 
 const color = {
   erro: 'rgb(220, 53, 69)',
-  sucess: ''
+  sucess: 'rgb(25, 135, 84)'
 }
 
 describe('Registro de Imagens', () => {
@@ -72,7 +44,7 @@ describe('Registro de Imagens', () => {
 
 describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
   const input = {
-    title: 'Alien BRAZIL',
+    title: 'Alien BR',
     url: 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg',
   }
   after(() => {
@@ -83,13 +55,13 @@ describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
     cy.visit('/')
   })
   it('Quando eu digito "Alien BR" no campo de título', () => {
-    registroform.typeTitle('Alien BR')
+    registroform.typeTitle(input.title)
   })
   it('Então eu devo ver um ícone de verificação no campo de título', () => {
     registroform.elements.titleInput().should('have.value', 'Alien BR')
   })
   it('Quando eu digito "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
-    registroform.typeUrl('https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
+    registroform.typeUrl(input.url)
   })
   it('Então eu devo ver um ícone de verificação no campo de URL da imagem', () => {
     registroform.elements.urlInput().should('have.value', 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
