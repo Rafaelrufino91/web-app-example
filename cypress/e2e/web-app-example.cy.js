@@ -1,4 +1,3 @@
-
 class RegistroForm {
   elements = {
     titleInput: () => cy.get('#title'),
@@ -13,6 +12,7 @@ class RegistroForm {
     this.elements.titleInput().type(text)
     }
   }
+
   typeUrl(text) {
     if (text != '') {
       this.elements.urlInput().type(text)
@@ -69,7 +69,16 @@ describe('Registro de Imagens', () => {
     })
   })
 })
+
 describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
+  const input = {
+    title: 'Alien BRAZIL',
+    url: 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg',
+  }
+  after(() => {
+      cy.clearAllLocalStorage()
+    })
+  
   it('Dado que estou na página de registro de imagem', () => {
     cy.visit('/')
   })
@@ -89,30 +98,10 @@ describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
     registroform.pressEnter()
     cy.wait(100)
   })
-})
-describe('Enviar uma imagem e atualizar a lista', () => {
-  it('Dado que estou na página de registro de imagem', () => {
-    cy.visit('/')
-  })
-  it('Então eu digitei "BR Alien" no campo de título', () => {
-    registroform.typeTitle('BR Alien')
-  })
-  it('Então eu digitei "https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg" no campo de URL', () => {
-    registroform.typeUrl('https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
-  })
-  it('Quando eu clico no botão de enviar', () => {
-    registroform.clickSubmit()
-  })
   it('E a lista de imagens registradas deve ser atualizada com o novo item', () => {
-    cy.get('#card-list')
-    
-  })
-  it('E o novo item deve ser armazenado no localStorage', () => {
-    
-  })
-  it('Então os campos devem ser limpos', () => {
-    
-  })
+    cy.get('#card-list .card-img')
+    .last()
+    .should('have.attr', 'src', input.url)
+  })  
 })
 
-  
