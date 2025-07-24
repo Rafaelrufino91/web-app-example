@@ -30,10 +30,6 @@ describe('Registro de Imagens', () => {
     it('Então eu clico no botão de envio', () => {
       registroform.clickSubmit()
     })
-    it('teste', () => {
-      cy.get('seletor').invoke('css', 'border-right-color').then((color) => {
-      cy.log('Cor encontrada:', color)
-    })
     it('Então devo ver a mensagem "Please type a title for the image." acima do campo de título', () => {
       registroform.elements.titleFeedback().should('contains.text', 'Please type a title for the image.')
     })
@@ -80,4 +76,3 @@ describe('Enviar uma imagem com entradas válidas usando a tecla enter', () => {
     .should('have.attr', 'src', input.url)
   })  
 })
-
