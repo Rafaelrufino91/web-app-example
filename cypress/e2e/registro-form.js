@@ -7,16 +7,8 @@ export class RegistroForm {
     submitBtn: () => cy.get('#btnSubmit')
   }
 
-  typeTitle(text) {
-    if (text != '') {
-    this.elements.titleInput().type(text)
-    }
-  }
-
-  typeUrl(text) {
-    if (text != '') {
-      this.elements.urlInput().type(text)
-    }
+  typeField(field, text) {
+    this.elements[field]().type(text)
   }
 
   clickSubmit() {
