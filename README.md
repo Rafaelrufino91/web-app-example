@@ -15,7 +15,7 @@ https://erickwendel.github.io/vanilla-js-web-app-example
 
 ---
 
-# 🔧 Tecnologias utilizadas
+## 🔧 Tecnologias utilizadas
 
 - Cypress
 - JavaScript
@@ -23,7 +23,7 @@ https://erickwendel.github.io/vanilla-js-web-app-example
 
 ---
 
-# 🧪 Cenários automatizados
+## 🧪 Cenários automatizados
 
 Os testes automatizados cobrem os seguintes cenários:
 
@@ -39,7 +39,7 @@ Os testes automatizados cobrem os seguintes cenários:
 
 ---
 
-# 📦 Instalação do projeto
+## 📦 Instalação do projeto
 
 Clone o repositório:
 
@@ -51,7 +51,7 @@ git clone https://github.com/seu-repositorio.git
 
 ---
 
-# ▶️ Executando os testes
+## ▶️ Executando os testes
 
 Abrir Cypress no modo interativo:
 
@@ -104,7 +104,7 @@ web-app-example/
 
 ---
 
-# 🖼️ Captura de Tela
+## 🖼️ Captura de Tela
 
 ![alt text](image.png)
 
