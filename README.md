@@ -111,5 +111,3 @@ web-app-example/
 ---
 
 👨‍💻 Desenvolvido por **Rafael Rufino**
-
-```
