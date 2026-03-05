@@ -44,7 +44,7 @@ Os testes automatizados cobrem os seguintes cenários:
 Clone o repositório:
 
 ```bash
-git clone https://github.com/seu-repositorio.git
+git clone https://github.com/Rafaelrufino91/web-app-example.git
 ````
 
 
