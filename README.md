@@ -1,33 +1,87 @@
-# 📌 Projeto de Testes End-to-End com Cypress
+# 📌 Testes End-to-End com Cypress
 
-Este repositório contém testes automatizados para a aplicação [vanilla-js-web-app-example](https://erickwendel.github.io/vanilla-js-web-app-example), com o objetivo de praticar o uso do **Cypress**, **Page Objects** e **integração com CI/CD** via GitHub Actions. 
+Este projeto demonstra a implementação de **testes automatizados End-to-End** utilizando **Cypress** em uma aplicação web simples.
 
+O objetivo é aplicar boas práticas de automação de testes como:
 
+- Page Object Model (POM)
+- Validação de elementos do DOM
+- Testes de cenários positivos e negativos
+- Integração contínua (CI/CD) com GitHub Actions
 
-## 🔧 Tecnologias utilizadas
+Aplicação utilizada para os testes:
 
-* [Cypress](https://www.cypress.io/)
-* JavaScript
-* GitHub Actions (CI/CD)
+https://erickwendel.github.io/vanilla-js-web-app-example
 
-## 🧪 O que foi praticado
+---
 
-* Escrita de testes E2E com Cypress
-* Uso do padrão Page Objects
-* Manipulação de elementos do DOM
-* Validações de CSS e mensagens de erro
-* Execução automatizada de testes com **CI/CD**
-* Boas práticas de organização de código
+# 🔧 Tecnologias utilizadas
 
-## ⚙️ CI/CD
+- Cypress
+- JavaScript
+- GitHub Actions (CI/CD)
 
-Este projeto está integrado com um fluxo de **CI/CD** para rodar os testes automaticamente a cada *push* ou *pull request*.
-A pipeline garante que os testes sejam executados em ambiente controlado, aumentando a confiabilidade das entregas.
+---
 
+# 🧪 Cenários automatizados
 
-## 📂 Estrutura do Projeto
+Os testes automatizados cobrem os seguintes cenários:
+
+### ❌ Cenários negativos
+- Envio do formulário com campo **Title vazio**
+- Envio com **URL inválida**
+- Envio com **campos vazios**
+
+### ✅ Cenários positivos
+- Inserção de dados válidos no formulário
+- Submissão do formulário utilizando **Enter**
+- Validação da criação de um novo **card de imagem**
+
+---
+
+# 📦 Instalação do projeto
+
+Clone o repositório:
 
 ```bash
+git clone https://github.com/seu-repositorio.git
+````
+
+
+
+---
+
+# ▶️ Executando os testes
+
+Abrir Cypress no modo interativo:
+
+```bash
+npx cypress open
+```
+
+Executar testes em modo headless:
+
+```bash
+npx cypress run
+```
+
+---
+
+# ⚙️ CI/CD
+
+Este projeto utiliza **GitHub Actions** para executar os testes automaticamente a cada:
+
+* push
+* pull request
+
+Isso garante que os testes sejam executados continuamente, aumentando a confiabilidade do projeto.
+
+---
+
+# 📂 Estrutura do Projeto
+
+```
+
 web-app-example/
 │
 ├── .github/
@@ -44,39 +98,18 @@ web-app-example/
 │   │
 │   ├── support/
 │       ├── commands.js          
-│       └── e2e.js              
-│
-├── node_modules/                
-├── cypress.config.js 
-├── image.png                    # Configuração do Cypress
-├── package-lock.json
-├── package.json
-└── README.md                   
-```
+│       └── e2e.js  
 
-## 🖼️ Captura de Tela
-
-![alt text](image.png)
-
-## 🚀 Como executar
-
-1. Instale as dependências:
-
-```bash
-npm install
-```
-
-2. Execute o Cypress:
-
-```bash
-npx cypress open
-```
-
-Ou para executar no modo headless:
-
-```bash
-npx cypress run
 ```
 
 ---
 
+# 🖼️ Captura de Tela
+
+![alt text](image.png)
+
+---
+
+👨‍💻 Desenvolvido por **Rafael Rufino**
+
+```

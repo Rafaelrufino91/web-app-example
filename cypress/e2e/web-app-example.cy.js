@@ -2,15 +2,18 @@ import { RegistroForm } from "./registro-form"
 
 const registroForm = new RegistroForm()
 
-
-const color = {
-  erro: 'rgb(220, 53, 69)',
+const colors= {
+  error: 'rgb(220, 53, 69)',
   success: 'rgb(25, 135, 84)'
 }
 
 const invalidInput = {
-  title: 'teste',
+  title: '',
   url: 'teste'
+}
+const validInput = {
+  title: 'Alien BR',
+  url: 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg',
 }
 
 describe('Registro de Imagens', () => {
@@ -19,10 +22,17 @@ describe('Registro de Imagens', () => {
       cy.clearAllLocalStorage()
     })
     describe('Envio com entradas inválidas', () => {
-
+      
+      it('Deve exibir mensagem de erro com campo title em branco', () => {
+        registroForm.typeTitle(invalidInput.title)
+        registroForm.typeUrl(validInput.url)
+        registroForm.clickSubmit()
+        registroForm.elements.titleFeedback().should('contains.text', 'Please type a title for the image.')
+      })
+      
       it('Deve exibir mensagem de erro ao enviar uma URL inválida', () => {
-        registroForm.typeField('titleInput', invalidInput.title)
-        registroForm.typeField('urlInput', invalidInput.url)
+        registroForm.typeTitle(validInput.title)
+        registroForm.typeUrl(invalidInput.url)
         registroForm.clickSubmit()
         registroForm.elements.urlFeedback().should('contains.text', 'Please type a valid URL')
       })
@@ -32,24 +42,24 @@ describe('Registro de Imagens', () => {
         registroForm.elements.urlInput().should('have.value', '')
         registroForm.clickSubmit()
         registroForm.elements.titleFeedback().should('contains.text', 'Please type a title for the image.')
-        registroForm.elements.titleInput().should('have.css', 'borderRightColor', color.erro) 
+        registroForm.elements.titleInput().should('have.css', 'border-right-color', colors.error) 
         registroForm.elements.urlFeedback().should('contains.text', 'Please type a valid URL')
-        registroForm.elements.urlFeedback().should('have.css', 'borderRightColor', color.erro) 
+        registroForm.elements.urlFeedback().should('have.css', 'border-right-color', colors.error) 
       })
 })
 
   describe('Envio com entradas válidas', () => {
-    const validInput = {
-      title: 'Alien BR',
-      url: 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg',
-    }
     
     it('Inserir os dados, validar os valores e enviar com enter', () => {
-      registroForm.typeField('titleInput', validInput.title)
-      registroForm.elements.titleInput().should('have.value', 'Alien BR')
-      registroForm.typeField('urlInput', validInput.url)
-      registroForm.elements.urlInput().should('have.value', 'https://cdn.mos.cms.futurecdn.net/eM9EvWyDxXcnQTTyH8c8p5-1200-80.jpg')
-      registroForm.pressEnter()
+      registroForm.typeTitle(validInput.title)
+      registroForm.elements.titleInput().should('have.value', validInput.title)
+      registroForm.typeUrl(validInput.url)
+      registroForm.elements.urlInput().should('have.value', validInput.url)
+      registroForm.elements.submitBtn().type('{enter}')
+      registroForm.elements.imagemcard()
+      .last()
+      .should('have.attr', 'src', validInput.url)
     })
+
 })
 })
